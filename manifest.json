@@ -1,0 +1,16 @@
+{
+  "name": "YTBlock",
+  "version": "1.0",
+  "description": "Made to block youtube",
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["background.js"]
+    }
+  ],
+  "browser_action": {
+    "default_popup": "popup.html"
+   },
+
+  "manifest_version": 2
+}
