@@ -2,15 +2,20 @@
   "name": "YTBlock",
   "version": "1.0",
   "description": "Made to block youtube",
-  "content_scripts": [
-    {
-      "matches": ["https://*.youtube.com/*"],
-      "js": ["background.js"]
-    }
-  ],
+  "content_scripts": [{
+    "js": ["background.js"],
+    "matches": ["http://*/*", "https://*/*"]
+  }],
   "browser_action": {
     "default_popup": "popup.html"
    },
-
+   "permissions": [
+    "webRequestBlocking",
+    "webRequest",
+    "activeTab",
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+ ],
   "manifest_version": 2
 }
