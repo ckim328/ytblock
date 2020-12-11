@@ -1,7 +1,7 @@
 {
   "name": "YTBlock",
   "version": "1.0",
-  "description": "Made to block youtube",
+  "description": "Deadass made this to block youtube",
   "content_scripts": [{
     "js": ["background.js"],
     "matches": ["http://*/*", "https://*/*"]
