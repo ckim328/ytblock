@@ -12,11 +12,13 @@ body{
     background-color:#EAEEA6;
     width: 300px;
     height:300px;
+
+
 }
 div {
     align-content: center;
     align-self: center;
-    
+    margin:30px;   
 }
 h1{
     text-align:center;

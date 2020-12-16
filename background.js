@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	close.addEventListener('click', function () {
 
-		findURL = function changeURL(text) {  
+	findURL = function changeURL(text) {  
       toggle = !toggle;
 			console.log('this');
 			var current = window.location.href;
