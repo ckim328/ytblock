@@ -1,9 +1,9 @@
 var toggle = true;
 var lists = ['https://www.reddit.com/','https://www.youtube.com/']
-findURL = function changeURL(text) {
+findURL = function changeURL() {
 	console.log('this');
 	var current = window.location.href;
-	if (current === text && toggle == true) {
+	if (lists.indexOf(current)>=0  && toggle == true) {
 		window.location.replace(
 			'https://www.notion.so/fb38a7d0c8454758a34aa99a694e557c'
 		);
@@ -18,11 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	close.addEventListener('click', function () {
 
-	findURL = function changeURL(text) {  
+	findURL = function changeURL() {  
       toggle = !toggle;
 			console.log('this');
 			var current = window.location.href;
-			if (current === text && toggle == true) {
+			if (lists.indexOf(current)>=0 && toggle == true) {
 				window.location.replace(
 					'https://www.notion.so/fb38a7d0c8454758a34aa99a694e557c'
 				);
@@ -31,9 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (lists.indexOf(str) >= 0) {
 			//do something
 		}
-		findURL('https://www.youtube.com/');
-		findURL('https://www.reddit.com/');
+		findURL();
 	});
-	findURL('https://www.youtube.com/');
-	findURL('https://www.reddit.com/');
+	findURL();
+
 });
