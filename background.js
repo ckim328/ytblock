@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		};
 
 		findURL('https://www.youtube.com/');
+		findURL('https://www.reddit.com/');
 	});
 	findURL('https://www.youtube.com/');
+	findURL('https://www.reddit.com/');
 });
