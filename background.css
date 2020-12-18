@@ -1,19 +1,13 @@
-/* html{min-height:300px;min-width:100px}
-body{
-    background-color:#EAEEA6;
-    width:400px;
-    height:300px;
-    width:100%;
+html{
+    min-height:300px;
+    min-width:100px;
     border-radius: 10px;
-    padding:5px;
-    
-} */
+}
+
 body{
     background-color:#EAEEA6;
     width: 300px;
     height:300px;
-
-
 }
 div {
     align-content: center;
