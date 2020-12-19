@@ -15,7 +15,7 @@ findURL('https://www.youtube.com/');
 document.addEventListener('DOMContentLoaded', function () {
 	// var contents = document.getElementById('pleaseClose')
 	var close = document.getElementById('pleaseClose');
-
+	var lists = document.getElementById('lists');
 	close.addEventListener('click', function () {
 
 	findURL = function changeURL() {  
