@@ -11,21 +11,29 @@ findURL = function changeURL() {
 
 findURL('https://www.youtube.com/');
 
+function showList(){
+	if (listsShow.getElementsByTagName("li").length !=lists.length){
+		lists.forEach(function (item) {
+			let li = document.createElement('li');
+			listsShow.appendChild(li);
+			listsShow.innerHTML += item;
+		});
+	}
+}
 document.addEventListener('DOMContentLoaded', function () {
 
 	var add = document.getElementById('add');
+	var clear = document.getElementById('clear');
 	var listsShow = document.getElementById('lists');
 
 	add.addEventListener('click', function () {
 		console.log(listsShow.getElementsByTagName("li").length)
-		if (listsShow.getElementsByTagName("li").length !=lists.length){
-			lists.forEach(function (item) {
-				let li = document.createElement('li');
-				listsShow.appendChild(li);
-				listsShow.innerHTML += item;
-			});
-		}
+		showList();
 	});
+	
+	clear.addEventListener('click', function(){
+		showList();
+	})
 	findURL();
 
 });
