@@ -11,7 +11,7 @@ findURL = function changeURL() {
 
 findURL('https://www.youtube.com/');
 
-function showList(){
+async function showList(){
 	if (listsShow.getElementsByTagName("li").length !=lists.length){
 		lists.forEach(function (item) {
 			let li = document.createElement('li');
@@ -25,14 +25,17 @@ document.addEventListener('DOMContentLoaded', function () {
 	var add = document.getElementById('add');
 	var clear = document.getElementById('clear');
 	var listsShow = document.getElementById('lists');
-
+	var txtBox = document.getElementById('txtbox');
 	add.addEventListener('click', function () {
 		console.log(listsShow.getElementsByTagName("li").length)
-		showList();
+		txt = txtBox.value;
+		console.log(txt)
+		lists.append(txt)
+		await showList();
 	});
 	
 	clear.addEventListener('click', function(){
-		showList();
+		await showList();
 	})
 	findURL();
 
