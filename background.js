@@ -9,7 +9,6 @@ findURL = function changeURL() {
 	}
 };
 
-findURL('https://www.youtube.com/');
 
 async function showList(){
 	if (listsShow.getElementsByTagName("li").length !=lists.length){
