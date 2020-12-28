@@ -1,8 +1,9 @@
 var toggle = true;
-var lists = ['https://www.reddit.com/','https://www.youtube.com/']
+var listsShow = ['https://www.reddit.com/','https://www.youtube.com/']
+
 findURL = function changeURL() {
 	var current = window.location.href;
-	if (lists.indexOf(current)>=0  && toggle == true) {
+	if (listsShow.indexOf(current)>=0  && toggle == true) {
 		window.location.replace(
 			'https://www.notion.so/fb38a7d0c8454758a34aa99a694e557c'
 		);
@@ -11,30 +12,40 @@ findURL = function changeURL() {
 
 
 async function showList(){
-	if (listsShow.getElementsByTagName("li").length !=lists.length){
-		lists.forEach(function (item) {
+	var listsShowEl = document.getElementById('lists');
+	if (listsShow.length ==0){
+		console.log('lists', listsShowEl)
+		listsShowEl.innerHTML =""
+	}
+	console.log(listsShow)
+	if (listsShowEl.getElementsByTagName("li").length !=listsShow.length && listsShow.length>0){
+		listsShow.forEach(function (item) {
 			let li = document.createElement('li');
-			listsShow.appendChild(li);
-			listsShow.innerHTML += item;
+			li.appendChild(document.createTextNode(item))
+			listsShowEl.appendChild(li);
+			// listsShowEl.innerHTML += item;
 		});
 	}
 }
+
 document.addEventListener('DOMContentLoaded', function () {
 
 	var add = document.getElementById('add');
 	var clear = document.getElementById('clear');
-	var listsShow = document.getElementById('lists');
+	var listsShowEl = document.getElementById('lists');
 	var txtBox = document.getElementById('txtbox');
 	add.addEventListener('click', function () {
-		console.log(listsShow.getElementsByTagName("li").length)
+		console.log(listsShowEl.getElementsByTagName("li").length)
 		txt = txtBox.value;
 		console.log(txt)
-		lists.append(txt)
-		await showList();
+		listsShow.push(txt)
+		 showList();
 	});
 	
 	clear.addEventListener('click', function(){
-		await showList();
+		listsShow = [];
+		console.log(listsShow)
+		 showList();
 	})
 	findURL();
 

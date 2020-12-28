@@ -23,3 +23,7 @@ h1{
 button{
     align-self: center;
 }
+ul{
+    margin:0;
+    display:block;
+}
