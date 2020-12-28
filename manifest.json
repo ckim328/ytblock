@@ -6,12 +6,17 @@
     "js": ["background.js"],
     "matches": ["http://*/*", "https://*/*"]
   }],
+  "background":{
+    "scripts":["background.js"],
+    "persistent":true
+  },
   "browser_action": {
     "default_popup": "popup.html"
    },
    "permissions": [
     "webRequestBlocking",
     "webRequest",
+    "storage",
     "activeTab",
     "tabs",
     "http://*/*",
