@@ -38,8 +38,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		console.log(listsShowEl.getElementsByTagName("li").length)
 		txt = txtBox.value;
 		console.log(txt)
-		listsShow.push(txt)
-		 showList();
+		if (txt.length>0){
+			listsShow.push(txt)
+			showList();
+		}
 	});
 	
 	clear.addEventListener('click', function(){
