@@ -1,34 +1,40 @@
-var toggle = true;
+
 var listsShow = ['https://www.youtube.com/'];
 
 findURL = function changeURL(url, tabid) {
-	var block = document.getElementById('add');
-	if (listsShow.indexOf(url) >= 0 && block.innerText=="On") {
+	var toggle = getToggle()
+	console.log('findURL', toggle)
+	if (listsShow.indexOf(url) >= 0 && toggle) {
 		console.log('IN HERE', tabid);
 		chrome.tabs.remove(tabid);
 	}
 };
 
+
+
 const getToggle = function getToggle(){
-	chrome.storage.local.get(['key'], function(result) {
-		console.log('Value currently is ' + result.key);
+	// var get=false
+	chrome.storage.local.get('key', function(result) {
+		console.log('getToggle',result.key)
+		var get = true;
+		if (result.key==undefined){
+			get= true
+			chrome.storage.local.set({key: get})
+		}
+		else get = result.key
+		return get
 	  });
-	
 }
 
 const setToggle = function setToggle(){
-	var currToggle = null
-	chrome.storage.local.get(['key'], function(result) {
-		currToggle = result.key
-		console.log('Value currently is ' + result.key);
-	  });
-	if (currToggle==undefined){
-		currToggle = true
+	var temp = getToggle()
+	console.log('setToggle', temp)
+	if (temp ==undefined){
+
 	}
-	chrome.storage.local.set({key: !currToggle}, function() {
-		console.log('Value is set to ' + !currToggle);
-	  });
+	chrome.storage.local.set({'key': !temp})
 }
+
 const getActiveUrl = (tabid, changeInfo, tab) => {
 	const url = changeInfo.url;
 
@@ -62,20 +68,19 @@ chrome.browserAction.onClicked.addListener(function () {
 document.addEventListener('DOMContentLoaded', function () {
 
 	var block = document.getElementById('add');
-	var toggleVal = getToggle()
 	console.log('eve', window.location.href)
-	if (block ){
-
+	if (block){
+		var toggleVal = getToggle()
+		console.log('onClick',toggleVal)
 		block.addEventListener('click', function () {
 			if (toggleVal){
 				block.innerText = "On"
-
+				setToggle()
 			}
 			else{
 				block.innerText = "Off"
-
+				setToggle()
 			}
-			setToggle()
 		});
 	}
 });
