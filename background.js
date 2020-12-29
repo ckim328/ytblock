@@ -2,37 +2,45 @@
 var listsShow = ['https://www.youtube.com/'];
 
 findURL = function changeURL(url, tabid) {
-	var toggle = getToggle()
-	console.log('findURL', toggle)
-	if (listsShow.indexOf(url) >= 0 && toggle) {
-		console.log('IN HERE', tabid);
-		chrome.tabs.remove(tabid);
-	}
+	getToggle().then(result=>{
+
+		console.log('findURL', result)
+		if (listsShow.indexOf(url) >= 0 && result) {
+			console.log('IN HERE', tabid);
+			chrome.tabs.remove(tabid);
+		}
+	})
 };
 
 
 
 const getToggle = function getToggle(){
-	// var get=false
-	chrome.storage.local.get('key', function(result) {
-		console.log('getToggle',result.key)
-		var get = true;
-		if (result.key==undefined){
-			get= true
-			chrome.storage.local.set({key: get})
-		}
-		else get = result.key
-		return get
-	  });
+	return new Promise(resolve =>{
+
+		chrome.storage.local.get('key', function(result) {
+			console.log('getToggle',result.key)
+			var get = true;
+			if (result.key==undefined){
+				get= true
+				chrome.storage.local.set({key: get})
+			}
+			else get = result.key
+			resolve(get)
+		});
+	})
 }
 
 const setToggle = function setToggle(){
-	var temp = getToggle()
-	console.log('setToggle', temp)
-	if (temp ==undefined){
-
-	}
-	chrome.storage.local.set({'key': !temp})
+	getToggle().then(result =>{
+		console.log('setToggle', result)
+		if (result ==undefined){
+			result = false
+			
+		}
+		chrome.storage.local.set({'key': !result},function(){
+			console.log('set key to ', result)
+		})
+	})
 }
 
 const getActiveUrl = (tabid, changeInfo, tab) => {
@@ -68,19 +76,21 @@ chrome.browserAction.onClicked.addListener(function () {
 document.addEventListener('DOMContentLoaded', function () {
 
 	var block = document.getElementById('add');
-	console.log('eve', window.location.href)
 	if (block){
-		var toggleVal = getToggle()
-		console.log('onClick',toggleVal)
 		block.addEventListener('click', function () {
-			if (toggleVal){
-				block.innerText = "On"
-				setToggle()
-			}
-			else{
-				block.innerText = "Off"
-				setToggle()
-			}
+			getToggle().then(result =>{
+				console.log('onClick',result)
+	
+				if (result){
+					block.innerText = "Block"
+					setToggle()
+				}
+				else{
+					block.innerText = "Unblock"
+					setToggle()
+				}
+			})
+
 		});
 	}
 });
